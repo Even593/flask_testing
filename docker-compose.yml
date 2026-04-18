@@ -1,0 +1,14 @@
+services:
+  flask_auth:
+    build: .
+    container_name: flask_auth_api
+    ports:
+      - "5001:5000"
+    environment:
+      - FLASK_ENV=development
+      - SECRET_KEY=change-this-in-production
+      - JWT_SECRET_KEY=change-this-jwt-secret-in-production
+      - SEED_DB=true
+    volumes:
+      - ./instance:/app/instance
+    restart: unless-stopped

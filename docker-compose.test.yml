@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  flask_auth_test:
+    build: .
+    container_name: flask_auth_test
+    environment:
+      FLASK_ENV: testing
+      FLASK_CONFIG: test
+      SECRET_KEY: test-secret-key-change-in-production
+      JWT_SECRET_KEY: test-jwt-secret-key-change-in-production
+      SEED_DB: false
+    command: python -m pytest -v --tb=short
+    volumes:
+      - .:/app
